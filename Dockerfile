@@ -1,7 +1,3 @@
-# Cheeky CRM
-
-# Web
-
 FROM debian:jessie
 
 RUN apt-get update && apt-get -y upgrade

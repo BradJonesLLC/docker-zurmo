@@ -1,3 +1,5 @@
 .git
 */.git
 public/app/assets
+public/app/protected/config/perInstance.php
+public/app/protected/config/debug.php
