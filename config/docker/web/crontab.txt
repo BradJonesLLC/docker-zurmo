@@ -1,0 +1,40 @@
+ZURMO_COMMANDS_PATH="/var/www/public/app/protected/commands"
+SHELL=/bin/bash
+
+*/5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super EmailArchiving &> /dev/null' www-data
+*/5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super EmailBounce &> /dev/null' www-data
+* * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ProcessOutboundEmail &> /dev/null' www-data
+
+#run these every 2 minutes
+*/2 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super Export &> /dev/null' www-data
+
+# run these every 5 Minutes
+*/5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super Monitor &> /dev/null' www-data
+*/5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super SendGridEmailEvents &> /dev/null' www-data
+
+# run these every 15 Minutes
+*/15 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super WorkflowMessageInQueue &> /dev/null ; ./zurmoc jobManager super ByTimeWorkflowInQueue &> /dev/null' www-data
+*/10 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ReadPermissionSubscriptionUpdate &> /dev/null' www-data
+
+# run these every 30 minutes
+*/30 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super AddressGeocodeUpdate &> /dev/null' www-data
+
+# run these every hour
+5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super AutoresponderQueueMessagesInOutbox &> /dev/null' www-data
+5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super CampaignGenerateDueCampaignItems &> /dev/null' www-data
+5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super CampaignMarkCompleted &> /dev/null' www-data
+5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super CampaignQueueMessagesInOutbox &> /dev/null' www-data
+5 * * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super UpdateModelsLatestActivityDateTimeByMeeting &> /dev/null' www-data
+
+#run these once a day, early in the morning
+30 3 * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super TestOutboundEmail &> /dev/null' www-data
+30 4 * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super CurrencyRatesUpdate &> /dev/null' www-data
+30 5 * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ClearSentNotificationsEmail &> /dev/null' www-data
+30 6 * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super WorkflowValidityCheck &> /dev/null' www-data
+
+35 2 * * 6 su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ImportCleanup &> /dev/null' www-data
+35 3 * * 6 su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ExportCleanup &> /dev/null' www-data
+35 4 * * 6 su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super CheckZurmoUpdates &> /dev/null' www-data
+30 5 * * * su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super JobLogCleanup &> /dev/null' www-data
+35 5 * * 6 su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super DraftEmailTemplateCleanup &> /dev/null' www-data
+35 2 * * 6 su -m -c 'cd "$ZURMO_COMMANDS_PATH" && ./zurmoc jobManager super ShortUrlCleanup &> /dev/null' www-data

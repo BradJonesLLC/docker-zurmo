@@ -1,0 +1,5 @@
+public/app/assets
+public/app/protected/config
+public/app/version.php
+public/app/protected/data
+public/app/protected/runtime
