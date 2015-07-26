@@ -17,6 +17,7 @@ if [[ ! -f /var/www/public/app/protected/config/perInstance.php ]]; then
   : ${ZURMO_DB:=zurmo}
   : ${ZURMO_DB_PASSWORD:=zurmo}
   : ${ZURMO_DB_USER:=zurmo}
+  : ${ZURMO_SUPERUSER_PASS:=admin}
   : ${ZURMO_SCRIPT_URL:=/app/index.php}
   : ${ZURMO_SELF_URL:=http://localhost:8082}
   : ${ZURMO_MEMCACHE_SERVER:=memcache}

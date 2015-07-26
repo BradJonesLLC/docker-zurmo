@@ -13,7 +13,6 @@ web:
    - memcache
   environment:
    - ENVIRONMENT=DEV
-   - ZURMO_SUPERUSER_PASS=admin
    - SSL=FALSE
 db:
   image: mysql:5.5
