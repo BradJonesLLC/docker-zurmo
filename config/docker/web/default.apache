@@ -12,7 +12,7 @@ CustomLog /dev/null common
 <VirtualHost *:80>
   <IfModule mod_ssl.c>
     RewriteEngine on
-    RewriteRule (.*) https://{%HTTP_HOST}$1 [NC,R=301]
+    RewriteRule (.*) https://%{HTTP_HOST}$1 [NC,R=301]
   </IfModule>
   DocumentRoot /var/www/public
   <Directory />

@@ -10,6 +10,7 @@ done
 chmod +x /var/www/public/app/protected/commands/zurmoc
 
 if [[ ! -f /var/www/public/app/protected/config/perInstance.php ]]; then
+  chown www-data public/app/protected/config
   cd /var/www/public/app/protected/commands
   set -a
   : ${ZURMO_DB_PORT:=3306}
@@ -33,5 +34,7 @@ if [[ ! -f /var/www/public/app/protected/config/perInstance.php ]]; then
   chmod u-w perInstance.php
   chmod u-w debug.php
 fi;
+
+rm /var/www/public/app/test.php
 
 source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND

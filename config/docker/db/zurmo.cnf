@@ -1,0 +1,9 @@
+[mysql]
+local-infile=1
+
+[mysqld]
+local-infile=1
+max_allowed_packet=20M
+max_sp_recursion_depth=20
+thread_stack=524288
+optimizer_search_depth=0
